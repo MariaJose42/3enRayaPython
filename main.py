@@ -27,8 +27,13 @@ def pintarTablero(tablero):
 
 '''
 Función que devuelve el jugador ganador si lo hay
+         1: Si gana el jugador 1
+         5: Si gana el jugador 5
+         0: Si es empate
+        -1: Si todavía se esta jugando
 '''
 def esGanador(tablero):
+    
     pass
      
 pintarTablero(tableroPrueba)
