@@ -25,4 +25,10 @@ def pintarTablero(tablero):
         print(salida)
 
 
+'''
+Función que devuelve el jugador ganador si lo hay
+'''
+def esGanador(tablero):
+    pass
+     
 pintarTablero(tableroPrueba)
