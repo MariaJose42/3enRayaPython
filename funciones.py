@@ -1,3 +1,5 @@
+import os
+
 tp1 = [[1,1,0],[0,0,1],[5,5,0]]
 tp2 = [[1,1,1],[0,5,1],[5,5,0]]
 tp3 = [[1,0,0],[1,5,1],[1,5,0]]
@@ -11,6 +13,7 @@ def inicializarTablero():
 Esta función nos pinta un tablero dado un tablero
 '''
 def pintarTablero(tablero):
+    os.system ("clear")
     print("Tablero: ")
     for i in range(0, len(tablero)):
         salida = ""
@@ -79,31 +82,48 @@ def columna(n, tablero):
 
 # Devuelve True o False si ha colocado la pieza en la posción
 def colocarPieza(jug, pos, tablero):
-    pass
+    if(pos == "a0"):
+        tablero[0][0] = jug
+    elif(pos == "a1"):
+        tablero[0][1] = jug
+    elif(pos == "a2"):
+        tablero[0][2] = jug
+    elif(pos == "b0"):
+        tablero[1][0] = jug
+    elif(pos == "b1"):
+        tablero[1][1] = jug
+    elif(pos == "b2"):
+        tablero[1][2] = jug
+    elif(pos == "c0"):
+        tablero[2][0] = jug
+    elif(pos == "c1"):
+        tablero[2][1] = jug
+    elif(pos == "c2"):
+        tablero[2][2] = jug
+
 # Devuelve True o False si hay una pieza en la posición
 def hayPieza(pos, tablero):
-    pass
-
-'''
-# Devuelve True or False si es un estado del tablero en empate
-def empate(tablero):
-    res = ""
-
-    l1 = sum(tablero[0])
-    l2 = sum(tablero[1])
-    l3 = sum(tablero[2])
-    c1 = sum(columna(0, tablero))
-    c2 = sum(columna(1, tablero))
-    c3 = sum(columna(0, tablero))
-    
-    devolver = False
-
-    if((l1 > 3) and (l2 > 3) and (l1 > 3)):
-        res = "El juego se ha terminado - Empate"
-        devolver = True
-    
-    return devolver
-'''
+    if(pos == "a0"):
+        return tablero[0][0] != 0
+    elif(pos == "a1"):
+        return tablero[0][1] != 0
+    elif(pos == "a2"):
+        return tablero[0][2] != 0
+    elif(pos == "b0"):
+        return tablero[1][0] != 0
+    elif(pos == "b1"):
+        return tablero[1][1] != 0
+    elif(pos == "b2"):
+        return tablero[1][2] != 0
+    elif(pos == "c0"):
+        return tablero[2][0] != 0
+    elif(pos == "c1"):
+        return tablero[2][1] != 0
+    elif(pos == "c2"):
+        return tablero[2][2] != 0
+    else:
+        #print(pos, "no es una coordenada valida.")
+        return True
 
 def empate(tablero):
     if(not ganadorJug2(tablero) or not ganadorJug1(tablero)):
@@ -114,17 +134,23 @@ def empate(tablero):
     else:
         return False
 
+def juega(jugador_actual, tablero):
+        if(jugador_actual == 1):
+            print("Juega el jugador 1 (X)")
+        else:
+            print("Juega el jugador 2 (O)")
+        pos = input("Dime coordenada: ")
+        if(not hayPieza(pos, tablero)):
+            colocarPieza(jugador_actual, pos, tablero)
+            
+            if(jugador_actual == 1):
+                return 5
+            else:
+                return 1
+            
+        else:
+            print("Hay una pieza prueba otra coordenada")
+            return jugador_actual
 
-'''
-1 --> Gana jugador 1
-2 --> Gana jugado 2
-0 --> Empate (FIN)
--1 --> Se esta jugando
-'''
-e1_tab = inicializarTablero()
-e2_tab = [[1,0,5],[1,5,1],[1,0,0]]
-e3_tab = [[1,0,5],[1,1,5],[0,0,1]]
-e4_tab = [[1,0,5],[1,1,5],[0,0,5]]
-e5_tab = [[5,5,5],[1,1,0],[0,0,1]]
-e6_tab = [[5,1,5],[1,5,1],[1,0,0]]
-print(esGanador(e6_tab))
+
+
